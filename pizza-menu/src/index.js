@@ -58,7 +58,8 @@ function App() {
 }
 
 function Header() {
-  return <h1>This is Header</h1>;
+  const style = { color: "red", fontSize: "48px", textTransform: "uppercase" };
+  return <h1 style={style}>This is Header</h1>;
 }
 
 function Menu() {
