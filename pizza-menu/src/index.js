@@ -68,16 +68,22 @@ function Header() {
 }
 
 function Menu() {
+  const pizzas = pizzaData;
+  const numPizzas = pizzas.length;
+
   return (
     <main className="menu">
       <h2>Our Menu</h2>
+      {/*conditional rendering here*/}
+      {numPizzas > 0 && (
+        <ul className="pizzas">
+          {pizzaData.map((pizza) => {
+            // return <Pizza name={pizza.name} photoName={pizza.photoName} />;
+            return <Pizza pizzaObj={pizza} key={pizza.name} />;
+          })}
+        </ul>
+      )}
 
-      <ul className="pizzas">
-        {pizzaData.map((pizza) => {
-          // return <Pizza name={pizza.name} photoName={pizza.photoName} />;
-          return <Pizza pizzaObj={pizza} key={pizza.name} />;
-        })}
-      </ul>
       {/* <Pizza 
         name="Focaccia"
         ingredients="Bread with italian olive oil and rosemary"
@@ -118,7 +124,13 @@ function Footer() {
 
   return (
     <footer className="footer">
-      {new Date().toLocaleTimeString()} We're currently Open.{" "}
+      {/*conditional rendering here*/}
+      {isOpen && (
+        <div className="order">
+          <p>We're Open until {closeHour}:00. Come visit us or Order online.</p>
+          <button className="btn">Order</button>
+        </div>
+      )}{" "}
     </footer>
   );
 }
